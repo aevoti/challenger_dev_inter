@@ -52,11 +52,12 @@ Você pode usar ferramentas de automação, mas deverá informar o uso completo 
 
 Serão considerados pontos positivos, porém não são obrigatórios: 
 
- 1. Diferencial - Escrever testes unitarios para os endpoints;
- 2. Diferencial - Utilização de documentação para o mini projeto;
- 3. Diferencial - Publicação do projeto em algum ambiente online;
- 4. Diferencial - Design patterns e rotinas para testes;
- 5. Diferencial - Boas Práticas de orientação a objetos;
+ 1. Diferencial - Escrever testes unitarios para os endpoints existentes;
+ 2. Diferencial - Garantir que os novos endpoints de agendamento passem nos testes pre-definidos;
+ 3. Diferencial - Utilização de documentação para o mini projeto;
+ 4. Diferencial - Publicação do projeto em algum ambiente online;
+ 5. Diferencial - Design patterns e rotinas para testes;
+ 6. Diferencial - Boas Práticas de orientação a objetos;
 
 <br>
 
