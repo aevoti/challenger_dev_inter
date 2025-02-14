@@ -24,11 +24,11 @@ O Objetivo dessa etapa é criar apis para um CRUD de agendamento online onde um 
 
 **Obrigatorio**  - Você deverá desenvolver as seguintes rotas em .Net Core(Versão de sua preferencia):
 
-    /agendamento/sala/{id} - [GET] - Deve Retornar todos os agendamentos da sala de id especificado
-    /agendamento/sala/{id} - [POST] - Deve cadastrar um novo agendamentos da sala de id especificado
-    /agendamento/sala/{id} - [PUT] - Deve atualizar o agendamento de id especificado;
-    /agendamento/sala/{id} - [DELETE] - Deve deletar o agendamento de id especificado;
-    /agendamento/ - [GET] - Deve Retornar todos os agendamentos do usuario solicitante;
+    /agendamentos/salas/{id} - [GET] - Deve Retornar todos os agendamentos da sala de id especificado
+    /agendamentos/salas/{id} - [POST] - Deve cadastrar um novo agendamentos da sala de id especificado
+    /agendamentos/{id} - [PUT] - Deve atualizar o agendamento de id especificado;
+    /agendamentos/{id} - [DELETE] - Deve deletar o agendamento de id especificado;
+    /agendamentos - [GET] - Deve Retornar todos os agendamentos do usuario solicitante;
 
 Você pode utilizar um banco de dados local SQL Server para a persistência dos dados.
 
