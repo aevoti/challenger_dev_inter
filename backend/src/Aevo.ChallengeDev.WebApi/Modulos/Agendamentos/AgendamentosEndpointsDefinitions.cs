@@ -1,39 +1,41 @@
 ﻿using Aevo.ChallengeDev.WebApi.Modulos.Agendamentos.Endpoints;
 using Aevo.CommonLib.Results.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 
 namespace Aevo.ChallengeDev.WebApi.Modulos.Agendamentos;
-
 public static class AgendamentosEndpointsDefinitions
 {
     private static async Task<IResult> CriarAgendamentoEndpoint([FromServices] CriarAgendamentoHandler handler,
-        [FromRoute] Guid salaId, [FromBody] CriarAgendamentoReqBody body, CancellationToken ct = default)
+        [FromRoute] Guid salaId, [FromBody] CriarAgendamentoReqBody body, HttpContext httpContext, CancellationToken ct = default)
     {
-        return (await handler.Handle(body.ToCriarAgendamento(salaId), ct)).ToApiResult();
+        return (await handler.Handle(body.ToCriarAgendamento(salaId, Guid.Parse(httpContext.User.FindFirst("sub")!.Value)), ct)).ToApiResult();
     }
 
     private static async Task<IResult> EditarAgendamentoEndpoint([FromServices] EditarAgendamentoHandler handler,
-        [FromRoute] Guid agendamentoId, [FromBody] EditarAgendamentoReqBody body, CancellationToken ct = default)
+        [FromRoute] Guid agendamentoId, [FromBody] EditarAgendamentoReqBody body, HttpContext httpContext, CancellationToken ct = default)
     {
-        return (await handler.Handle(body.ToEditarAgendamento(agendamentoId), ct)).ToApiResult();
+        return (await handler.Handle(body.ToEditarAgendamento(agendamentoId, Guid.Parse(httpContext.User.FindFirst("sub")!.Value)), ct)).ToApiResult();
     }
 
     private static async Task<IResult> ExcluirAgendamentoEndpoint([FromServices] ExcluiAgendamentoHandler handler,
-        [FromRoute] Guid agendamentoId, CancellationToken ct = default)
+        [FromRoute] Guid agendamentoId, HttpContext httpContext, CancellationToken ct = default)
     {
-        return (await handler.Handle(new ExcluirAgendamento(agendamentoId), ct)).ToApiResult();
+        return (await handler.Handle(new ExcluirAgendamento(agendamentoId, Guid.Parse(httpContext.User.FindFirst("sub")!.Value)), ct)).ToApiResult();
     }
 
     private static async Task<IResult> GetAgendamentosSalaEndpoint([FromServices] GetAgendamentosSalaHandler handler,
-        [FromRoute] Guid salaId, CancellationToken ct = default)
+        [FromRoute] Guid salaId, HttpContext httpContext, CancellationToken ct = default)
     {
-        return (await handler.Handle(new GetAgendamentosSala(salaId), ct)).ToApiResult();
+        return (await handler.Handle(new GetAgendamentosSala(salaId, Guid.Parse(httpContext.User.FindFirst("sub")!.Value)), ct)).ToApiResult();
     }
 
     private static async Task<IResult> GetAgendamentosUsuarioLogadoEndpoint(
-        [FromServices] GetAgendamentosUsuarioLogadoHandler handler, CancellationToken ct = default)
+        [FromServices] GetAgendamentosUsuarioLogadoHandler handler, HttpContext httpContext, CancellationToken ct = default)
     {
-        return (await handler.Handle(GetAgendamentosUsuarioLogado.Instance, ct)).ToApiResult();
+        return (await handler.Handle(new GetAgendamentosUsuarioLogado(Guid.Parse(httpContext.User.FindFirst("sub")!.Value)), ct)).ToApiResult();
     }
 
 

@@ -22,7 +22,34 @@ namespace Aevo.ChallengeDev.WebApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Aevo.ChallengeDev.WebApi.Modulos.Salas.Sala", b =>
+            modelBuilder.Entity("Aevo.ChallengeDev.WebApi.Modulos.Agendamentos.Models.Agendamento", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Fim")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Inicio")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("SalaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsuarioId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Agendamentos");
+                });
+
+            modelBuilder.Entity("Aevo.ChallengeDev.WebApi.Modulos.Salas.Models.Sala", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,7 +77,7 @@ namespace Aevo.ChallengeDev.WebApi.Migrations
                     b.ToTable("Salas");
                 });
 
-            modelBuilder.Entity("Aevo.ChallengeDev.WebApi.Modulos.Usuarios.Usuario", b =>
+            modelBuilder.Entity("Aevo.ChallengeDev.WebApi.Modulos.Usuarios.Models.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
